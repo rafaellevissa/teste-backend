@@ -83,7 +83,15 @@ WSGI_APPLICATION = 'amicci.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-if 'test' in sys.argv or 'test' in os.getenv('DJANGO_TEST_ENV', ''): DATABASES = {
+if 'test' in sys.argv or 'test' in os.getenv('DJANGO_TEST_ENV', ''):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:',
+        }
+    }
+else:
+    DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': os.getenv("DB_NAME"),
@@ -91,13 +99,6 @@ if 'test' in sys.argv or 'test' in os.getenv('DJANGO_TEST_ENV', ''): DATABASES =
             'PASSWORD': os.getenv("DB_PASSWORD"),
             'HOST': os.getenv("DB_HOSTNAME"),
             'PORT': os.getenv("DB_PORT"),
-        }
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': ':memory:',
         }
     }
 

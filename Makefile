@@ -11,4 +11,4 @@ seeder:
 	done
 
 integration-tests:
-	@python manage.py runtests
+	DJANGO_TEST_ENV="test" python manage.py runtests
