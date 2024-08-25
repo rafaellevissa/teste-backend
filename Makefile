@@ -9,3 +9,6 @@ seeder:
 	@for fixture in $(shell ls ./seed); do \
 		python manage.py loaddata seed/$$fixture; \
 	done
+
+integration-tests:
+	@python manage.py runtests
