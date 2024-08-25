@@ -1,16 +1,25 @@
-name: EC2 Deploy 
+name: EC2 Deploy
 
 on:
   push:
     branches:
-        - main
+      - main
 
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: rafaellevissa/amicci-backend:latest
-  APP_NAME: amicci-backend 
+  APP_NAME: amicci-backend
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run integration tests
+        run: make integration-tests
+
   build:
     runs-on: ubuntu-latest
     steps:
