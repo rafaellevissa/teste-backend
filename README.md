@@ -37,3 +37,6 @@ You can run the tests with the folowing command:
 ```
 make integration-tests
 ```
+
+Deploy feito em: https://dwxzajdn0dlqs.cloudfront.net/
+Documentação da api: http://3.85.33.55:8000/swagger/
